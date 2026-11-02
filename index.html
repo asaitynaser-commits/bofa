@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NADO LIBYA - اكتشفي أحدث الأزياء النسائية وتسوقي مجموعتنا الجديدة.">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>NADO LIBYA | Fashion Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="storefront.js"></script>
+</head>
+
+<body>
+
+  <div class="announcement-bar">
+    <p>اكتشفي تشكيلتنا الجديدة من NADO LIBYA</p>
+  </div>
+
+  <header class="site-header">
+
+    <div class="header-main">
+
+      <a href="#home" class="logo" id="siteLogo">
+        NADO LIBYA
+      </a>
+
+      <nav class="main-nav" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#products">جميع المنتجات</a>
+        <a href="#about">عن NADO</a>
+        <a href="#contact">تواصلي معنا</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#products" class="header-search-link" aria-label="البحث عن المنتجات">
+          <span aria-hidden="true">⌕</span>
+          <span>بحث</span>
+        </a>
+
+        <a href="#products" class="header-cart-link" id="headerCartLink">
+          <span aria-hidden="true">♡</span>
+          <span>تسوقي الآن</span>
+        </a>
+      </div>
+
+    </div>
+
+    <nav class="category-navigation" id="categoryNavigation" aria-label="أقسام المتجر">
+      <button type="button" class="category-nav-button active" data-category="all">
+        الكل
+      </button>
+      <span class="category-nav-loading">جاري تحميل الأقسام...</span>
+    </nav>
+
+  </header>
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-copy">
+
+        <p class="hero-eyebrow">NADO LIBYA COLLECTION</p>
+
+        <h1 id="heroTitle">
+          اكتشفي أسلوبك.
+          <span>عبّري عن أناقتك.</span>
+        </h1>
+
+        <p class="hero-description">
+          اختاري من مجموعتنا الجديدة قطعاً تناسب ذوقك وتفاصيل يومك.
+        </p>
+
+        <a href="#products" class="hero-button">
+          اكتشفي المجموعة
+          <span aria-hidden="true">←</span>
+        </a>
+
+        <div class="hero-caption">
+          <span></span>
+          NEW COLLECTION
+        </div>
+
+      </div>
+
+      <div class="hero-art" aria-label="NADO LIBYA Fashion">
+        <div class="hero-art-frame">
+          <div class="hero-art-inner">
+            <span class="hero-art-top">NADO</span>
+            <span class="hero-art-number">01</span>
+            <span class="hero-art-bottom">LIBYA · FASHION</span>
+          </div>
+        </div>
+
+        <div class="hero-art-stamp">
+          <span>NEW</span>
+          <strong>SEASON</strong>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- COLLECTION INTRO -->
+    <section class="collection-intro">
+
+      <div>
+        <p class="section-kicker">THE NADO EDIT</p>
+        <h2>اختيارات صُممت لتناسبك</h2>
+      </div>
+
+      <p>
+        اكتشفي القطع المميزة، وتصفحي أحدث الإضافات إلى مجموعتنا.
+      </p>
+
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+
+      <div class="products-heading">
+
+        <div>
+          <p class="section-kicker">SHOP THE COLLECTION</p>
+          <h2 id="activeCategoryTitle">جميع المنتجات</h2>
+          <p class="products-subtitle">
+            اختاري ما يعجبك، وسنساعدك في إتمام طلبك بسهولة.
+          </p>
+        </div>
+
+        <div class="products-count">
+          <span id="productCount">0</span>
+          <span>منتج</span>
+        </div>
+
+      </div>
+
+      <!-- FILTERS -->
+      <div class="products-toolbar">
+
+        <div class="products-search">
+          <span aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            id="productSearch"
+            placeholder="ابحثي عن منتج..."
+            aria-label="البحث عن منتج"
+          >
+        </div>
+
+        <div class="toolbar-actions">
+
+          <select id="categoryFilter" aria-label="اختيار التصنيف">
+            <option value="all">جميع الأقسام</option>
+          </select>
+
+          <select id="productSort" aria-label="ترتيب المنتجات">
+            <option value="newest">الأحدث أولاً</option>
+            <option value="price-low">السعر: من الأقل للأعلى</option>
+            <option value="price-high">السعر: من الأعلى للأقل</option>
+            <option value="name">الاسم</option>
+          </select>
+
+          <button
+            type="button"
+            id="favoritesToggle"
+            class="favorites-toggle"
+            aria-pressed="false"
+          >
+            <span aria-hidden="true">♡</span>
+            المفضلة
+            <span id="favoritesCount">0</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div
+        class="products-container"
+        id="productsContainer"
+        aria-live="polite"
+      >
+        <p class="empty-products">جاري تحميل المنتجات...</p>
+      </div>
+
+    </section>
+
+    <!-- BRAND STORY -->
+    <section class="brand-story" id="about">
+
+      <div class="brand-story-content">
+
+        <p class="section-kicker">ABOUT NADO</p>
+
+        <h2>الأناقة في التفاصيل.</h2>
+
+        <p id="aboutDescription">
+          NADO LIBYA متجر متخصص في الأزياء، نقدم أحدث التصاميم والقطع العصرية لنمنحك تجربة تسوق مميزة.
+        </p>
+
+        <a href="#products" class="story-link">
+          اكتشفي منتجاتنا
+          <span aria-hidden="true">←</span>
+        </a>
+
+      </div>
+
+      <div class="brand-story-decoration">
+        <span class="story-large-text">NADO</span>
+        <span class="story-small-text">STYLE · QUALITY · ELEGANCE</span>
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+      <p class="section-kicker">WE ARE HERE FOR YOU</p>
+
+      <h2>نحن هنا لمساعدتك</h2>
+
+      <p class="contact-description">
+        لديك استفسار بخصوص منتج أو طلب؟ يسعدنا تواصلك معنا.
+      </p>
+
+      <div class="contact-links" id="storeContactLinks">
+        <p class="contact-loading">سيتم عرض قنوات التواصل هنا.</p>
+      </div>
+
+      <p class="store-address" id="storeAddress"></p>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <a href="#home" class="footer-logo">NADO LIBYA</a>
+
+    <p class="footer-description">
+      أسلوبك يبدأ من اختيارك.
+    </p>
+
+    <div class="footer-links" id="footerSocialLinks"></div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        جميع الحقوق محفوظة ©
+        <span id="currentYear">2026</span>
+        NADO LIBYA
+      </p>
+
+      <a href="#home">العودة للأعلى ↑</a>
+    </div>
+
+  </footer>
+
+  <!-- FLOATING CART -->
+  <button
+    type="button"
+    class="cart-button"
+    id="cartButton"
+    aria-label="فتح سلة التسوق"
+  >
+    <span class="cart-icon" aria-hidden="true">🛍</span>
+    <span>السلة</span>
+    <span id="cartCount">0</span>
+  </button>
+
+  <!-- PRODUCT QUICK VIEW -->
+  <dialog class="product-dialog" id="productOptionsDialog">
+
+    <form id="productOptionsForm" method="dialog">
+
+      <div class="dialog-topbar">
+        <span class="dialog-brand">NADO LIBYA</span>
+
+        <button
+          type="button"
+          id="closeOptionsButton"
+          class="dialog-close"
+          aria-label="إغلاق"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="quick-view-layout">
+
+        <div class="quick-view-image">
+          <img id="optionsProductImage" src="" alt="صورة المنتج">
+        </div>
+
+        <div class="quick-view-content">
+
+          <p class="section-kicker">PRODUCT DETAILS</p>
+
+          <h2 id="optionsProductName">اختيارات المنتج</h2>
+
+          <p
+            class="quick-view-description"
+            id="optionsProductDescription"
+          ></p>
+
+          <p class="options-price" id="optionsProductPrice"></p>
+
+          <label class="checkout-field" id="sizeField">
+            المقاس
+            <select id="itemSizeSelect"></select>
+          </label>
+
+          <label class="checkout-field" id="colorField">
+            اللون
+            <select id="itemColorSelect"></select>
+          </label>
+
+          <label class="checkout-field">
+            الكمية
+            <input
+              id="itemQuantityInput"
+              type="number"
+              min="1"
+              step="1"
+              value="1"
+              required
+            >
+          </label>
+
+          <p class="stock-hint" id="optionsStockHint"></p>
+
+          <button
+            type="submit"
+            class="primary-action"
+            id="addSelectedProductButton"
+          >
+            إضافة إلى السلة
+          </button>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </dialog>
+
+  <!-- CART & CHECKOUT -->
+  <dialog class="cart-dialog" id="cartDialog">
+
+    <div class="cart-header">
+
+      <div>
+        <p class="section-kicker">YOUR SELECTION</p>
+        <h2>حقيبة التسوق</h2>
+        <p class="cart-header-subtitle">مراجعة اختياراتك قبل إتمام الطلب</p>
+      </div>
+
+      <button
+        type="button"
+        id="closeCartButton"
+        class="dialog-close"
+        aria-label="إغلاق السلة"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart">حقيبتك فارغة حالياً.</p>
+    </div>
+
+    <div class="cart-summary" id="cartSummary">
+
+      <div>
+        <span>قيمة المنتجات</span>
+        <strong id="cartSubtotal">0 د.ل</strong>
+      </div>
+
+      <div>
+        <span>التوصيل</span>
+        <strong id="cartDeliveryFee">0 د.ل</strong>
+      </div>
+
+      <div class="summary-total">
+        <span>الإجمالي</span>
+        <strong id="cartTotal">0 د.ل</strong>
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="primary-action"
+      id="showCheckoutButton"
+      disabled
+    >
+      متابعة إتمام الطلب
+    </button>
+
+    <p id="cartMessage" class="form-message" role="status" aria-live="polite"></p>
+
+    <!-- CHECKOUT -->
+    <form id="checkoutForm" class="checkout-form" hidden>
+
+      <div class="checkout-divider"></div>
+
+      <p class="section-kicker">ORDER INFORMATION</p>
+      <h3>بيانات الطلب</h3>
+
+      <label class="checkout-field">
+        الاسم الكامل *
+        <input
+          id="customerName"
+          name="customerName"
+          type="text"
+          minlength="2"
+          maxlength="80"
+          autocomplete="name"
+          required
+          placeholder="اكتبي الاسم الكامل"
+        >
+      </label>
+
+      <label class="checkout-field">
+        رقم الهاتف *
+        <input
+          id="customerPhone"
+          name="customerPhone"
+          type="tel"
+          minlength="8"
+          maxlength="22"
+          autocomplete="tel"
+          required
+          placeholder="رقم يمكن التواصل معك عليه"
+        >
+      </label>
+
+      <label class="checkout-field">
+        المدينة / المنطقة *
+        <input
+          id="customerCity"
+          name="city"
+          type="text"
+          minlength="2"
+          maxlength="70"
+          required
+          placeholder="مثال: بنغازي - الليثي"
+        >
+      </label>
+
+      <fieldset class="checkout-fieldset" id="deliveryMethodFieldset">
+
+        <legend>طريقة الاستلام *</legend>
+
+        <label class="choice-row">
+          <input
+            type="radio"
+            name="deliveryMethod"
+            value="delivery"
+            checked
+          >
+          توصيل إلى العنوان
+        </label>
+
+        <label class="choice-row">
+          <input
+            type="radio"
+            name="deliveryMethod"
+            value="pickup"
+          >
+          استلام من الفرع
+        </label>
+
+      </fieldset>
+
+      <label class="checkout-field" id="deliveryAddressField">
+        العنوان بالتفصيل *
+        <textarea
+          id="customerAddress"
+          name="address"
+          rows="2"
+          maxlength="300"
+          placeholder="اسم الشارع، أقرب علامة مميزة، ورقم المبنى إن وجد"
+        ></textarea>
+      </label>
+
+      <div class="pickup-address-box" id="pickupAddressBox" hidden></div>
+
+      <fieldset class="checkout-fieldset">
+
+        <legend>طريقة الدفع *</legend>
+
+        <div id="paymentOptions" class="payment-options"></div>
+
+      </fieldset>
+
+      <div class="bank-details-box" id="bankDetailsBox" hidden></div>
+
+      <label class="checkout-field" id="bankReferenceField" hidden>
+        رقم مرجع التحويل (اختياري)
+        <input
+          id="bankReference"
+          type="text"
+          maxlength="80"
+          placeholder="رقم العملية إن توفر"
+        >
+      </label>
+
+      <label class="checkout-field">
+        ملاحظات إضافية (اختياري)
+        <textarea
+          id="customerNotes"
+          name="notes"
+          rows="2"
+          maxlength="500"
+          placeholder="أي ملاحظات تخص الطلب أو التوصيل"
+        ></textarea>
+      </label>
+
+      <div class="checkout-final-total">
+        <span>المبلغ المطلوب</span>
+        <strong id="checkoutFinalTotal">0 د.ل</strong>
+      </div>
+
+      <button
+        type="submit"
+        class="primary-action"
+        id="placeOrderButton"
+      >
+        تأكيد الطلب
+      </button>
+
+      <p class="checkout-small-note">
+        سيتم تسجيل الطلب لدى المتجر، ثم فتح واتساب لإرسال تفاصيله.
+        لا يعتبر التحويل البنكي مؤكداً إلا بعد مراجعة المتجر.
+      </p>
+
+    </form>
+
+    <a
+      id="whatsappFallbackLink"
+      class="whatsapp-fallback"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      hidden
+    >
+      فتح رسالة الطلب في واتساب
+    </a>
+
+    <p
+      id="checkoutMessage"
+      class="form-message"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+  </dialog>
+
+</body>
+</html>

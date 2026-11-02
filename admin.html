@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="لوحة إدارة متجر NADO LIBYA">
+  <title>NADO LIBYA | لوحة الإدارة</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=DM+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin-commerce.css">
+
+  <script type="module" src="admin.js"></script>
+  <script type="module" src="admin-commerce.js"></script>
+</head>
+
+<body class="admin-body">
+  <div class="admin-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <a href="admin.html" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">
+          NADO
+          <small>LIBYA · MANAGEMENT</small>
+        </span>
+      </a>
+
+      <div class="sidebar-label">القائمة الرئيسية</div>
+
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="dashboard" type="button">
+          <span class="nav-icon">⌂</span>
+          <span>الرئيسية</span>
+        </button>
+
+        <button class="nav-item" data-view="products" type="button">
+          <span class="nav-icon">▦</span>
+          <span>المنتجات</span>
+        </button>
+
+        <button class="nav-item" data-view="categories" type="button">
+          <span class="nav-icon">▤</span>
+          <span>التصنيفات</span>
+        </button>
+
+        <button class="nav-item" data-view="inventory" type="button">
+          <span class="nav-icon">▣</span>
+          <span>المخزون</span>
+          <span class="nav-count" id="lowStockNavCount">0</span>
+        </button>
+
+        <div class="sidebar-label sidebar-label-spaced">إدارة المتجر</div>
+
+        <button class="nav-item" data-view="orders" type="button">
+          <span class="nav-icon">▧</span>
+          <span>الطلبات</span>
+        </button>
+
+        <button class="nav-item" data-view="customers" type="button">
+          <span class="nav-icon">♙</span>
+          <span>العملاء</span>
+        </button>
+
+        <button class="nav-item" data-view="discounts" type="button">
+          <span class="nav-icon">%</span>
+          <span>العروض والخصومات</span>
+        </button>
+
+        <div class="sidebar-label sidebar-label-spaced">الأعمال والتقارير</div>
+
+        <button class="nav-item" data-view="reports" type="button">
+          <span class="nav-icon">▥</span>
+          <span>التقارير</span>
+        </button>
+
+        <button class="nav-item" data-view="staff" type="button">
+          <span class="nav-icon">♧</span>
+          <span>الموظفون والصلاحيات</span>
+        </button>
+
+        <div class="sidebar-label sidebar-label-spaced">النظام</div>
+
+        <button class="nav-item" data-view="settings" type="button">
+          <span class="nav-icon">⚙</span>
+          <span>إعدادات المتجر</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="index.html" target="_blank" rel="noopener" class="store-link">
+          <span>↗</span>
+          عرض المتجر
+        </a>
+
+        <button id="logoutButton" class="logout-button" type="button">
+          <span>⇥</span>
+          تسجيل الخروج
+        </button>
+
+        <div class="sidebar-version">NADO MANAGEMENT SYSTEM · 2.0</div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-area">
+
+      <header class="topbar">
+        <div class="topbar-right">
+          <button
+            id="mobileMenuButton"
+            class="mobile-menu-button"
+            type="button"
+            aria-label="فتح القائمة"
+            aria-expanded="false"
+          >☰</button>
+
+          <div>
+            <div class="breadcrumb">
+              NADO LIBYA <span>/</span>
+              <span id="breadcrumbName">الرئيسية</span>
+            </div>
+            <h1 id="pageTitle">الرئيسية</h1>
+          </div>
+        </div>
+
+        <div class="topbar-left">
+          <div class="top-date" id="todayDate"></div>
+
+          <div class="admin-profile">
+            <span class="profile-avatar">N</span>
+            <span class="profile-details">
+              <strong id="adminEmail">مدير المتجر</strong>
+              <small>مدير النظام</small>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-area">
+
+        <!-- DASHBOARD -->
+        <section class="view-section active" id="view-dashboard">
+
+          <div class="welcome-banner">
+            <div class="welcome-content">
+              <span class="eyebrow">NADO LIBYA · MANAGEMENT SYSTEM</span>
+              <h2>مرحباً بك في لوحة التحكم</h2>
+              <p>كل ما تحتاجه لإدارة متجرك ومتابعة عملياته في مكان واحد.</p>
+
+              <div class="welcome-meta">
+                <span class="live-dot"></span>
+                لوحة إدارة المتجر
+              </div>
+            </div>
+
+            <div class="welcome-decoration">N</div>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">STORE OVERVIEW</span>
+              <h2>نظرة عامة</h2>
+              <p>ملخص المنتجات والمخزون المسجل في متجرك.</p>
+            </div>
+
+            <button class="outline-button" id="dashboardRefresh" type="button">
+              <span>↻</span>
+              تحديث البيانات
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>إجمالي المنتجات</span>
+                <span class="stat-icon">▦</span>
+              </div>
+              <strong id="statProducts">0</strong>
+              <small>جميع المنتجات المسجلة</small>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>المنتجات المنشورة</span>
+                <span class="stat-icon stat-icon-green">✓</span>
+              </div>
+              <strong id="statPublished">0</strong>
+              <small>المنتجات الظاهرة للعملاء</small>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>إجمالي المخزون</span>
+                <span class="stat-icon">▣</span>
+              </div>
+              <strong id="statStock">0</strong>
+              <small>عدد القطع المسجلة</small>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>مخزون منخفض</span>
+                <span class="stat-icon warning-icon">!</span>
+              </div>
+              <strong id="statLowStock">0</strong>
+              <small>تحتاج إلى مراجعة</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-kicker">LATEST PRODUCTS</span>
+                  <h3>أحدث المنتجات</h3>
+                  <p>آخر المنتجات التي أضفتها إلى المتجر.</p>
+                </div>
+
+                <button class="text-button" data-goto="products" type="button">
+                  عرض الكل ←
+                </button>
+              </div>
+
+              <div class="recent-products" id="recentProducts">
+                <div class="empty-state">جارٍ تحميل المنتجات...</div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-kicker">STORE STATUS</span>
+                  <h3>حالة المتجر</h3>
+                  <p>نسبة المنتجات المنشورة والمسودات.</p>
+                </div>
+              </div>
+
+              <div class="store-health">
+                <div class="health-row">
+                  <span>منتجات منشورة</span>
+                  <strong id="healthPublished">0</strong>
+                </div>
+
+                <div class="health-track">
+                  <span id="healthPublishedBar"></span>
+                </div>
+
+                <div class="health-row">
+                  <span>مسودات ومخفية</span>
+                  <strong id="healthDraft">0</strong>
+                </div>
+
+                <div class="health-track">
+                  <span id="healthDraftBar"></span>
+                </div>
+
+                <div class="health-note" id="healthMessage">
+                  يتم تحديث الملخص بعد تحميل بيانات المتجر.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="quick-actions">
+            <div class="section-heading compact-heading">
+              <div>
+                <span class="section-kicker">QUICK ACCESS</span>
+                <h2>اختصارات سريعة</h2>
+              </div>
+            </div>
+
+            <div class="quick-actions-grid">
+
+              <button class="quick-action" data-goto="products" type="button">
+                <span class="quick-icon">＋</span>
+                <strong>إضافة منتج</strong>
+                <small>أضف منتجاً جديداً</small>
+              </button>
+
+              <button class="quick-action" data-goto="categories" type="button">
+                <span class="quick-icon">▤</span>
+                <strong>التصنيفات</strong>
+                <small>تنظيم أقسام المتجر</small>
+              </button>
+
+              <button class="quick-action" data-goto="inventory" type="button">
+                <span class="quick-icon">▣</span>
+                <strong>مراجعة المخزون</strong>
+                <small>متابعة كميات المنتجات</small>
+              </button>
+
+              <button class="quick-action" data-goto="orders" type="button">
+                <span class="quick-icon">▧</span>
+                <strong>الطلبات</strong>
+                <small>متابعة طلبات العملاء</small>
+              </button>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="view-section" id="view-products">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">PRODUCT MANAGEMENT</span>
+              <h2>إدارة المنتجات</h2>
+              <p>إضافة المنتجات وتعديل بياناتها والتحكم في ظهورها داخل المتجر.</p>
+            </div>
+
+            <button class="primary-button" id="showProductForm" type="button">
+              ＋ إضافة منتج
+            </button>
+          </div>
+
+          <div class="toolbar">
+            <input
+              type="search"
+              id="productSearch"
+              placeholder="ابحث عن اسم المنتج أو التصنيف..."
+              aria-label="البحث عن منتج"
+            >
+
+            <select id="productStatusFilter" aria-label="تصفية حسب الحالة">
+              <option value="all">جميع الحالات</option>
+              <option value="published">منشور</option>
+              <option value="draft">مسودة / مخفي</option>
+            </select>
+
+            <select id="productCategoryFilter" aria-label="تصفية حسب التصنيف">
+              <option value="all">جميع التصنيفات</option>
+            </select>
+          </div>
+
+          <div class="panel product-editor" id="productEditor" hidden>
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">PRODUCT DETAILS</span>
+                <h3 id="productFormTitle">إضافة منتج جديد</h3>
+                <p>أدخل معلومات المنتج وصورته ومخزونه.</p>
+              </div>
+
+              <button
+                class="icon-button"
+                id="closeProductForm"
+                type="button"
+                aria-label="إغلاق"
+              >✕</button>
+            </div>
+
+            <form id="productForm">
+              <input type="hidden" id="productId">
+              <input type="hidden" id="existingImagePath">
+
+              <div class="form-grid">
+
+                <label class="field">
+                  اسم المنتج *
+                  <input id="productName" type="text" maxlength="100" required>
+                </label>
+
+                <label class="field">
+                  التصنيف *
+                  <input
+                    id="productCategory"
+                    type="text"
+                    maxlength="60"
+                    list="categorySuggestions"
+                    required
+                  >
+                  <datalist id="categorySuggestions"></datalist>
+                </label>
+
+                <label class="field">
+                  السعر الأساسي (LYD) *
+                  <input id="productPrice" type="number" min="0" step="0.01" required>
+                </label>
+
+                <label class="field">
+                  سعر التخفيض (اختياري)
+                  <input id="productSalePrice" type="number" min="0" step="0.01">
+                </label>
+
+                <label class="field">
+                  الكمية *
+                  <input id="productQuantity" type="number" min="0" step="1" value="1" required>
+                </label>
+
+                <label class="field">
+                  حالة المنتج
+                  <select id="productStatus">
+                    <option value="draft">مسودة / مخفي</option>
+                    <option value="published">منشور</option>
+                  </select>
+                </label>
+
+                <label class="field field-full">
+                  وصف المنتج
+                  <textarea id="productDescription" rows="4" maxlength="1000" placeholder="اكتب وصفاً مختصراً للمنتج..."></textarea>
+                </label>
+
+                <label class="field">
+                  المقاسات
+                  <input id="productSizes" type="text" placeholder="S, M, L, XL">
+                </label>
+
+                <label class="field">
+                  الألوان
+                  <input id="productColors" type="text" placeholder="أسود، أبيض، بيج">
+                </label>
+
+                <label class="field field-full">
+                  رابط صورة المنتج
+                  <input id="productImageUrl" type="url" placeholder="https://...">
+                </label>
+
+                <label class="field field-full">
+                  أو رفع صورة من الجهاز
+                  <input id="productImage" type="file" accept="image/jpeg,image/png,image/webp">
+                  <small>الأنواع المدعومة JPG وPNG وWEBP، بحد أقصى 5MB.</small>
+                </label>
+
+                <div class="image-preview-area field-full">
+                  <img id="imagePreview" alt="معاينة صورة المنتج" hidden>
+                </div>
+
+                <label class="check-field field-full">
+                  <input id="productIsNew" type="checkbox">
+                  تمييز المنتج كمنتج جديد
+                </label>
+
+              </div>
+
+              <div class="form-actions">
+                <button class="primary-button" id="saveProductButton" type="submit">
+                  حفظ المنتج
+                </button>
+
+                <button class="outline-button" id="cancelProductEdit" type="button">
+                  إلغاء
+                </button>
+
+                <span id="productFormMessage" class="form-message" role="status"></span>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="table-heading">
+              <div>
+                <span class="panel-kicker">PRODUCT CATALOG</span>
+                <h3>قائمة المنتجات</h3>
+                <p id="productsCount">0 منتج</p>
+              </div>
+
+              <button class="outline-button" id="refreshProducts" type="button">
+                ↻ تحديث
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>المنتج</th>
+                    <th>التصنيف</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+
+                <tbody id="productsTableBody">
+                  <tr>
+                    <td colspan="6" class="empty-state">جارٍ تحميل المنتجات...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="view-section" id="view-categories">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">STORE CATEGORIES</span>
+              <h2>التصنيفات</h2>
+              <p>نظّم منتجات المتجر ضمن أقسام واضحة وسهلة التصفح.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>إضافة تصنيف جديد</h3>
+                <p>سيظهر التصنيف النشط ضمن خيارات المنتجات.</p>
+              </div>
+            </div>
+
+            <form id="categoryForm" class="inline-form">
+              <input
+                id="categoryName"
+                type="text"
+                maxlength="60"
+                placeholder="اسم التصنيف"
+                required
+              >
+
+              <input
+                id="categorySort"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                placeholder="الترتيب"
+              >
+
+              <button class="primary-button" type="submit">
+                إضافة التصنيف
+              </button>
+            </form>
+
+            <p id="categoryMessage" class="form-message" role="status"></p>
+          </div>
+
+          <div class="panel">
+            <div class="table-heading">
+              <div>
+                <h3>قائمة التصنيفات</h3>
+                <p>التصنيفات المحفوظة في قاعدة البيانات.</p>
+              </div>
+
+              <button class="outline-button" id="refreshCategories" type="button">
+                ↻ تحديث
+              </button>
+            </div>
+
+            <div id="categoriesList" class="category-list">
+              <div class="empty-state">جارٍ تحميل التصنيفات...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- INVENTORY -->
+        <section class="view-section" id="view-inventory">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">INVENTORY CONTROL</span>
+              <h2>إدارة المخزون</h2>
+              <p>راقب الكميات وحدد المنتجات التي تحتاج إلى إعادة توفير.</p>
+            </div>
+
+            <button class="outline-button" id="refreshInventory" type="button">
+              ↻ تحديث
+            </button>
+          </div>
+
+          <div class="stats-grid inventory-stats">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>إجمالي القطع</span>
+                <span class="stat-icon">▣</span>
+              </div>
+              <strong id="inventoryTotal">0</strong>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>مخزون منخفض</span>
+                <span class="stat-icon warning-icon">!</span>
+              </div>
+              <strong id="inventoryLow">0</strong>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>نفد المخزون</span>
+                <span class="stat-icon stat-icon-red">×</span>
+              </div>
+              <strong id="inventoryOut">0</strong>
+            </article>
+          </div>
+
+          <div class="panel">
+            <div class="toolbar">
+              <input
+                type="search"
+                id="inventorySearch"
+                placeholder="ابحث عن منتج..."
+                aria-label="البحث في المخزون"
+              >
+
+              <select id="inventoryFilter" aria-label="تصفية المخزون">
+                <option value="all">كل المنتجات</option>
+                <option value="low">مخزون منخفض</option>
+                <option value="out">نفد المخزون</option>
+                <option value="available">متوفر</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>المنتج</th>
+                    <th>التصنيف</th>
+                    <th>الكمية الحالية</th>
+                    <th>حالة المخزون</th>
+                    <th>تعديل الكمية</th>
+                  </tr>
+                </thead>
+
+                <tbody id="inventoryTableBody">
+                  <tr>
+                    <td colspan="5" class="empty-state">جارٍ تحميل المخزون...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ORDERS: managed by admin-commerce.js -->
+        <section class="view-section" id="view-orders">
+          <div class="commerce-loading panel">
+            <span class="loading-spinner"></span>
+            <p>جارٍ تحميل إدارة الطلبات...</p>
+          </div>
+        </section>
+
+        <!-- CUSTOMERS -->
+        <section class="view-section" id="view-customers">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">CUSTOMER DIRECTORY</span>
+              <h2>العملاء</h2>
+              <p>قائمة العملاء المستخرجة من الطلبات المسجلة في المتجر.</p>
+            </div>
+
+            <button class="outline-button" id="refreshCustomers" type="button">
+              ↻ تحديث
+            </button>
+          </div>
+
+          <div class="stats-grid customer-stats">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>عدد العملاء</span>
+                <span class="stat-icon">♙</span>
+              </div>
+              <strong id="customersTotal">0</strong>
+              <small>عملاء لديهم طلبات مسجلة</small>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>إجمالي الطلبات</span>
+                <span class="stat-icon">▧</span>
+              </div>
+              <strong id="customersOrders">0</strong>
+              <small>الطلبات المرتبطة بالعملاء</small>
+            </article>
+          </div>
+
+          <div class="panel">
+            <div class="toolbar">
+              <input
+                type="search"
+                id="customerSearch"
+                placeholder="ابحث بالاسم أو رقم الهاتف..."
+                aria-label="البحث عن عميل"
+              >
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>اسم العميل</th>
+                    <th>رقم الهاتف</th>
+                    <th>عدد الطلبات</th>
+                    <th>آخر طلب</th>
+                  </tr>
+                </thead>
+
+                <tbody id="customersTableBody">
+                  <tr>
+                    <td colspan="4" class="empty-state">جارٍ تحميل العملاء...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="table-footnote">
+              تظهر بيانات العملاء عند وجود طلبات محفوظة في قاعدة بيانات المتجر.
+            </p>
+          </div>
+        </section>
+
+        <!-- DISCOUNTS -->
+        <section class="view-section" id="view-discounts">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">PROMOTIONS</span>
+              <h2>العروض والخصومات</h2>
+              <p>تابع المنتجات التي لديها أسعار تخفيض محددة.</p>
+            </div>
+
+            <button class="primary-button" data-goto="products" type="button">
+              إدارة أسعار المنتجات
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>منتجات عليها تخفيض</span>
+                <span class="stat-icon">%</span>
+              </div>
+              <strong id="discountProductsCount">0</strong>
+              <small>منتجات لها سعر تخفيض</small>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>متوسط نسبة التخفيض</span>
+                <span class="stat-icon">↘</span>
+              </div>
+              <strong id="discountAverage">0%</strong>
+              <small>حسب أسعار المنتجات المخفضة</small>
+            </article>
+          </div>
+
+          <div class="panel">
+            <div class="table-heading">
+              <div>
+                <h3>المنتجات المخفضة</h3>
+                <p>تعتمد هذه القائمة على سعر التخفيض المحفوظ في بيانات المنتج.</p>
+              </div>
+
+              <button class="outline-button" id="refreshDiscounts" type="button">
+                ↻ تحديث
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>المنتج</th>
+                    <th>السعر الأساسي</th>
+                    <th>سعر التخفيض</th>
+                    <th>نسبة التخفيض</th>
+                    <th>الإجراء</th>
+                  </tr>
+                </thead>
+
+                <tbody id="discountsTableBody">
+                  <tr>
+                    <td colspan="5" class="empty-state">جارٍ تحميل العروض...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="notice-card">
+            <span class="notice-icon">i</span>
+            <div>
+              <strong>بخصوص كوبونات الخصم</strong>
+              <p>
+                هذه الصفحة تعرض تخفيضات أسعار المنتجات. نظام كوبونات مستقل يحتاج
+                مجموعة بيانات وقواعد Firestore وربط التحقق من الكوبون بعملية إتمام الطلب.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- REPORTS -->
+        <section class="view-section" id="view-reports">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">STORE REPORTS</span>
+              <h2>التقارير</h2>
+              <p>ملخص المنتجات والمخزون مع إمكانية تصدير البيانات.</p>
+            </div>
+
+            <button class="outline-button" id="exportProductsCsv" type="button">
+              ↓ تصدير المنتجات CSV
+            </button>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>تقرير المنتجات والمخزون</h3>
+                <p>الأرقام التالية مستخرجة من بيانات المنتجات الحالية.</p>
+              </div>
+            </div>
+
+            <div class="report-summary" id="reportSummary"></div>
+
+            <p class="report-note">
+              تقارير المبيعات والأرباح تحتاج إلى طلبات حقيقية مسجلة وحالات طلب واضحة.
+              لن يتم عرض أرقام مبيعات تقديرية.
+            </p>
+          </div>
+        </section>
+
+        <!-- STAFF -->
+        <section class="view-section" id="view-staff">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">TEAM ACCESS</span>
+              <h2>الموظفون والصلاحيات</h2>
+              <p>إدارة الوصول إلى لوحة التحكم بطريقة آمنة.</p>
+            </div>
+          </div>
+
+          <div class="notice-card staff-notice">
+            <span class="notice-icon">!</span>
+            <div>
+              <strong>إعداد حسابات الموظفين</strong>
+              <p>
+                لا تنشئ حسابات الموظفين من واجهة عامة باستخدام صلاحيات المدير.
+                أنشئ حساب الموظف من Firebase Authentication، ثم اربط UID الخاص به
+                بملف صلاحيات في قاعدة البيانات بعد تجهيز قواعد Firestore المناسبة.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel staff-security-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">SECURITY</span>
+                <h3>حماية لوحة الإدارة</h3>
+                <p>المستخدم الحالي المصرح له بالدخول.</p>
+              </div>
+
+              <span class="security-indicator">
+                <span></span>
+                جلسة مصادق عليها
+              </span>
+            </div>
+
+            <div class="staff-account-row">
+              <span class="staff-account-icon">N</span>
+
+              <div>
+                <strong id="staffCurrentEmail">جارٍ تحميل الحساب...</strong>
+                <small>الحساب الحالي الذي سجل الدخول</small>
+              </div>
+            </div>
+
+            <div class="permission-note">
+              <strong>مهم</strong>
+              <p>
+                إخفاء أزرار لوحة التحكم لا يعتبر حماية للصلاحيات.
+                يجب تطبيق صلاحيات كل دور داخل Firebase Security Rules،
+                وأي عملية إدارية حساسة لإنشاء حسابات أو تغيير أدوار يجب أن تتم
+                من بيئة خلفية موثوقة.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS: managed by admin-commerce.js -->
+        <section class="view-section" id="view-settings">
+          <div class="commerce-loading panel">
+            <span class="loading-spinner"></span>
+            <p>جارٍ تحميل إعدادات المتجر...</p>
+          </div>
+        </section>
+
+      </div>
+
+      <footer class="main-footer">
+        <span>NADO LIBYA</span>
+        <span>نظام إدارة المتجر</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

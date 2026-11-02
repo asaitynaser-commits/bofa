@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5f0">
+
+  <title>دخول الإدارة | NADO LIBYA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=DM+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin-login.css">
+  <script type="module" src="admin-login.js"></script>
+</head>
+
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-card">
+
+      <a href="index.html" class="login-brand">
+        NADO <span>LIBYA</span>
+      </a>
+
+      <p class="login-kicker">ADMINISTRATION</p>
+
+      <h1>مرحباً بعودتك</h1>
+
+      <p class="login-subtitle">
+        سجّل الدخول للوصول إلى إدارة المتجر.
+      </p>
+
+      <form id="loginForm" novalidate>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="username"
+          placeholder="name@example.com"
+          required
+        >
+
+        <label for="password">كلمة المرور</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="أدخل كلمة المرور"
+          required
+        >
+
+        <button id="loginButton" type="submit">
+          تسجيل الدخول
+        </button>
+
+        <p id="loginMessage" role="status" aria-live="polite"></p>
+
+      </form>
+
+      <a href="index.html" class="back-link">
+        العودة إلى المتجر
+      </a>
+
+    </section>
+  </main>
+</body>
+</html>
